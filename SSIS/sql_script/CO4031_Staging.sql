@@ -34,6 +34,15 @@ CREATE TABLE [Person].[Business_Entity](
 ) ON [PRIMARY]
 GO
 
+CREATE TABLE [Person].[BusinessEntityAddress](
+	[BusinessEntityID] [int] NULL,
+	[AddressID] [int] NULL,
+	[AddressTypeID] [int] NULL,
+	[Created_Dt] [datetime] NULL,
+	[SSISTrackId] [int] NULL
+) ON [PRIMARY]
+GO
+
 /****** Object:  Table [Person].[Person]    Script Date: 25-09-2021 13:26:13 ******/
 SET ANSI_NULLS ON
 GO
