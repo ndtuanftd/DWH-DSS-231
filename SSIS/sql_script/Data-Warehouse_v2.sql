@@ -124,8 +124,8 @@ GO
 CREATE TABLE DimStoreCustomer (
     BusinessEntityID INT PRIMARY KEY,
     [Store Name] NVARCHAR(50) NOT NULL,
-	[Sales Volume Segment] INT, -- Tính từ AnnualSales
-	[Revenue Segment] INT, -- Tính từ AnnualRevenue
+	[Sales Volume] INT, -- Tính từ AnnualSales
+	[Revenue] INT, -- Tính từ AnnualRevenue
 	[StoreType] NVARCHAR(30), -- Tính từ BusinessType NVARCHAR(10): BM=Bicycle manu BS=bicyle store OS=online store SGS=sporting goods store D=Discount Store
 	[YearOpened] INT,
 	[Specialty] NVARCHAR(50),
@@ -137,6 +137,8 @@ CREATE TABLE DimStoreCustomer (
 	[M] money,
 	RFM_Score NVARCHAR(3),
 	DemographicClusterID INT,
+	[Sales Volume Segment] NVARCHAR(30),
+	[Revenue Segment] NVARCHAR(30),
 	[Store Establishment Status Segment] NVARCHAR(30), -- Tính từ YearOpened SMALLINT,
 	[Store Specialty Segment] NVARCHAR(30), -- Tính từ Specialty NVARCHAR(50),
 	[Store Size Segment] NVARCHAR(30), -- Tính từ SquareFeet INT,
@@ -780,18 +782,29 @@ EXEC sp_executesql @sql;
 --======== driver here====
 TRUNCATE TABLE DimStoreCustomer;
 INSERT INTO DimStoreCustomer (
-	 BusinessEntityID, [Store Name], [Sales Volume Segment], [Revenue Segment], -- Tính từ AnnualRevenue
+	 BusinessEntityID, [Store Name], [Sales Volume], [Revenue], -- Tính từ AnnualRevenue
 	[StoreType],[YearOpened], [Specialty],[SquareFeet], [NumberOfEmployees]
 )
 SELECT 
-    customer.CustomerID
+    customer.StoreID
 	,s.[Name] 
     ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
         (/StoreSurvey/AnnualSales)[1]', 'money') AS [AnnualSales] 
     ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
         (/StoreSurvey/AnnualRevenue)[1]', 'money') AS [AnnualRevenue] 
-    ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
-        (/StoreSurvey/BusinessType)[1]', 'nvarchar(5)') AS [BusinessType] 
+	,  CASE 
+		WHEN s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
+        (/StoreSurvey/BusinessType)[1]', 'nvarchar(5)') = 'BM' THEN 'Bicycle Manufacturer'
+		WHEN s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
+        (/StoreSurvey/BusinessType)[1]', 'nvarchar(5)') = 'BS' THEN 'Bicycle Store'
+		WHEN s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
+        (/StoreSurvey/BusinessType)[1]', 'nvarchar(5)') = 'OS' THEN 'Online Store'
+		WHEN s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
+        (/StoreSurvey/BusinessType)[1]', 'nvarchar(5)') = 'SGS' THEN 'Sporting Goods Store'
+		WHEN s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
+        (/StoreSurvey/BusinessType)[1]', 'nvarchar(5)') = 'D' THEN 'Discount Store'
+		ELSE 'Unknown' -- If you have other values that you don't want to change
+	END AS [BusinessType]
     ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
         (/StoreSurvey/YearOpened)[1]', 'integer') AS [YearOpened] 
     ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
@@ -801,9 +814,10 @@ SELECT
     ,s.[Demographics].value('declare default element namespace "http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/StoreSurvey"; 
         (/StoreSurvey/NumberEmployees)[1]', 'integer') AS [NumberEmployees] 
 FROM CO4031_Staging.Sales.Customer customer
-JOIN 
+LEFT JOIN 
 	CO4031_Staging.[Sales].[Store] s
 ON customer.StoreID = s.BusinessEntityID
+WHERE customer.PersonID is null
 
 DECLARE @SQL_RECREATE NVARCHAR(MAX) = ''
 --ADD CONSTRAINT:
@@ -898,18 +912,19 @@ SELECT
 	, SOH.OrderDate
 	, SOH.DueDate
 	, SOH.ShipDate
-	, CASE 
-		WHEN Store.BusinessEntityID IS NULL THEN Individual.BusinessEntityID
+	,  
+	CASE 
+		WHEN Customer.StoreID IS NULL THEN Customer.PersonID
 		ELSE NULL
-	END AS PersonID, 
-	Store.BusinessEntityID  AS StoreID
+	END AS PersonID,
+	Customer.StoreID  AS StoreID
 	,SOH.TerritoryID
 	, SOH.SalesOrderNumber
 	, RevisionNumber
 	,OrderQty
 	,SubTotal
 	,TotalDue
-	
+-- SELECT *
 FROM CO4031_Staging.Sales.SalesOrderHeader AS SOH
 INNER JOIN CO4031_Staging.Sales.SalesOrderDetail As SOD ON SOH.SalesOrderId = SOD.SalesOrderID
 LEFT JOIN  CO4031_Staging.Sales.Customer AS Customer  ON SOH.CustomerID = Customer.CustomerID
@@ -922,6 +937,9 @@ where
 	OrderQty >= 0 and OrderQty is NOT null 
 ;
 
+SELECT COUNT(*) FROM CO4031_Staging.Sales.SalesOrderHeader
+JOIN  CO4031_Staging.Sales.SalesOrderDetail
+ON CO4031_Staging.Sales.SalesOrderHeader.SalesOrderId = CO4031_Staging.Sales.SalesOrderDetail.SalesOrderID
 
 DECLARE @SQL_RECREATE NVARCHAR(MAX) = ''
 --ADD CONSTRAINT:
