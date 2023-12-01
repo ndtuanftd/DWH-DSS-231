@@ -910,8 +910,8 @@ INSERT INTO dbo.FactSales(
 	SalesOrderID, ProductKey, OrderDateKey, DueDateKey, ShipDateKey,
 	IndividualCustomerKey, StoreCustomerKey,SalesTerritoryKey, SalesOrderNumber
 	, TaxAmt, Freight, UnitPrice , [Changes to Order]
-	, [Sales Product Quantity], [Sales Subtotal Amount], [Sales TotalDue Amount])
-	, [Sales OrderLine Amount]
+	, [Sales Product Quantity], [Sales Subtotal Amount], [Sales TotalDue Amount]
+	, [Sales OrderLine Amount])
 SELECT 
 	SOH.SalesOrderId
 	, SOD.ProductID
@@ -927,13 +927,13 @@ SELECT
 	,SOH.TerritoryID
 	, SOH.SalesOrderNumber
 	, TaxAmt
-	, Freight
+	, SOH.Feight
 	,UnitPrice
 	, RevisionNumber
 	,OrderQty
 	,SubTotal
 	,TotalDue
-	, ProductLineTotal
+	, LineTotal
 -- SELECT *
 FROM CO4031_Staging.Sales.SalesOrderHeader AS SOH
 INNER JOIN CO4031_Staging.Sales.SalesOrderDetail As SOD ON SOH.SalesOrderId = SOD.SalesOrderID
