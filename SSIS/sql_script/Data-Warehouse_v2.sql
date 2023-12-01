@@ -97,23 +97,18 @@ CREATE TABLE DimIndividualCustomer (
 	-- StateProvinceID INT,
 	[R] INT,
 	[F] INT,
-	[M] money,
-	RFM_Score NVARCHAR(3),
-	DemographicClusterID INT,
-	[Age Segment] NVARCHAR(50), -- Tính từ cluster Birthday DATE,
-	
+	[M] INT,
+	[RFM Score] NVARCHAR(3),
+	[Age Segment] NVARCHAR(50), -- Tính từ cluster Birthday DATE,	
 	[Income Bracket Segment] NVARCHAR(50), -- Tính từ cluster attribute YearlyIncome 
-	
-	
-
 	[Family Status Segment] NVARCHAR(50),
-
 								-- Tính từ
 									--MaritalStatus NCHAR(5),
 									--TotalChildren SMALLINT,
 									--NumberChildrenAtHome SMALLINT,
 									--NumberCarsOwned SMALLINT,
-
+	
+	[RFM Segment] [nvarchar](50) NULL,	
 
 	-- FOREIGN KEY (StateProvinceID) REFERENCES DimStateProvince(StateProvinceID)
     -- Other customer-related attributes
@@ -134,16 +129,16 @@ CREATE TABLE DimStoreCustomer (
 	-- StateProvinceID INT,
 	[R] INT,
 	[F] INT,
-	[M] money,
-	RFM_Score NVARCHAR(3),
-	DemographicClusterID INT,
-	[Sales Volume Segment] NVARCHAR(30),
-	[Revenue Segment] NVARCHAR(30),
-	[Store Establishment Status Segment] NVARCHAR(30), -- Tính từ YearOpened SMALLINT,
-	[Store Specialty Segment] NVARCHAR(30), -- Tính từ Specialty NVARCHAR(50),
-	[Store Size Segment] NVARCHAR(30), -- Tính từ SquareFeet INT,
-	[Store Brand Number Segment] NVARCHAR(30), -- Tính từ Brands SMALLINT,
-	[Store Employee Size Segment] NVARCHAR(30), -- Tính từ NumberEmployees SMALLINT,
+	[M] INT,
+	[RFM Score] NVARCHAR(3),
+	[Store Establishment Status Segment] [nvarchar](30) NULL,
+	[Store Specialty Segment] [nvarchar](30) NULL,
+	[Store Size Segment] [nvarchar](30) NULL,
+	[Store Brand Number Segment] [nvarchar](30) NULL,
+	[Store Employee Size Segment] [nvarchar](30) NULL,
+	[Sales Volume Segment] [nvarchar](50) NULL,
+	[Revenue Segment] [nvarchar](50) NULL,
+	[RFM Segment] [nvarchar](50) NULL,
     -- Other customer-related attributes
 	-- StateProvinceID INT,
 	-- FOREIGN KEY (StateProvinceID) REFERENCES DimStateProvince(StateProvinceID)
