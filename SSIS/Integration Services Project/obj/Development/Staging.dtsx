@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="CO4031_Staging"
   DTS:PackageType="5"
-  DTS:VersionBuild="90"
-  DTS:VersionGUID="{B4309C43-8B99-4D6F-A3DD-BE8C7BA9EEAB}">
+  DTS:VersionBuild="92"
+  DTS:VersionGUID="{27B446D8-895F-43A9-BBD7-30746B8FAEDA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2384,12 +2384,6 @@
                       externalMetadataColumnId="Package\Business Entity Address\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BusinessEntityID]"
                       lineageId="Package\Business Entity Address\OLE DB Source.Outputs[OLE DB Source Output].Columns[BusinessEntityID]" />
                     <inputColumn
-                      refId="Package\Business Entity Address\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="ModifiedDate"
-                      externalMetadataColumnId="Package\Business Entity Address\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
-                      lineageId="Package\Business Entity Address\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
-                    <inputColumn
                       refId="Package\Business Entity Address\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressID]"
                       cachedDataType="i4"
                       cachedName="AddressID"
@@ -2404,10 +2398,6 @@
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Business Entity Address\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
-                      dataType="dbTimeStamp"
-                      name="ModifiedDate" />
                     <externalMetadataColumn
                       refId="Package\Business Entity Address\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BusinessEntityID]"
                       dataType="i4"
@@ -2424,6 +2414,10 @@
                       refId="Package\Business Entity Address\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressTypeID]"
                       dataType="i4"
                       name="AddressTypeID" />
+                    <externalMetadataColumn
+                      refId="Package\Business Entity Address\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Created_Dt]"
+                      dataType="dbTimeStamp"
+                      name="Created_Dt" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3980,7 +3974,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="17">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12117,7 +12111,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="10">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12134,7 +12128,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate AddressType"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="11">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12151,7 +12145,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Business Entity Address"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="12">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12168,7 +12162,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Business_Entity"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="13">
+      DTS:ThreadHint="6">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12185,7 +12179,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate CountryRegion"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="14">
+      DTS:ThreadHint="7">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12202,7 +12196,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Culture"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="15">
+      DTS:ThreadHint="8">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12219,7 +12213,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Customer"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="16">
+      DTS:ThreadHint="9">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12236,7 +12230,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Product"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="22">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12253,7 +12247,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate ProductCateogry"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="20">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12270,7 +12264,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate ProductModel"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="21">
+      DTS:ThreadHint="10">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12287,7 +12281,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate ProductModelProductDescriptionCulture"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="19">
+      DTS:ThreadHint="11">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12304,7 +12298,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate ProductSubcategory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="18">
+      DTS:ThreadHint="12">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12321,7 +12315,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Sales Territory"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="9">
+      DTS:ThreadHint="13">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12338,7 +12332,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Sales Territory History"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="14">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12355,7 +12349,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate SalesOrderDetail"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="15">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12372,7 +12366,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate SalesOrderHeader"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="16">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12389,7 +12383,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate SalesOrderHeaderSalesReason"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="17">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12406,7 +12400,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate SalesReason"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="18">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12423,7 +12417,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate SpecialOffer"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="19">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12440,7 +12434,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate SpecialOfferProduct"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="6">
+      DTS:ThreadHint="20">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12457,7 +12451,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate StateProvince"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="7">
+      DTS:ThreadHint="21">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12474,7 +12468,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Store"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="8">
+      DTS:ThreadHint="22">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -12690,6 +12684,10 @@
           Id="Package\AddressType"
           TopLeft="847.797578614916,1324.28487163215" />
         <NodeLayout
+          Size="197,42"
+          Id="Package\Business Entity Address"
+          TopLeft="462.367053094512,1311.58311588141" />
+        <NodeLayout
           Size="156,43"
           Id="Package\Business_Entity"
           TopLeft="513.611106081969,981.169580150821" />
@@ -12781,6 +12779,10 @@
           Size="188,43"
           Id="Package\Truncate AddressType"
           TopLeft="831.269806145677,1199.98662738289" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Truncate Business Entity Address"
+          TopLeft="443.839280625273,1188.28487163215" />
         <NodeLayout
           Size="201,43"
           Id="Package\Truncate Business_Entity"
@@ -13304,6 +13306,28 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3 1 7]"
+          TopLeft="563.353166859893,1230.28487163215">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81.2982442492639"
+              Start="0,0"
+              End="0,73.7982442492639">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.7982442492639" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3 1 7 2]"
           TopLeft="1580.00242970267,878.039259046353">
           <EdgeLayout.Curve>
@@ -13441,36 +13465,6 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,73.798244249263" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="197,42"
-          Id="Package\Business Entity Address"
-          TopLeft="462.367053094512,1311.58311588141" />
-        <NodeLayout
-          Size="244,42"
-          Id="Package\Truncate Business Entity Address"
-          TopLeft="443.839280625273,1188.28487163215" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3 1 7]"
-          TopLeft="563.353166859893,1230.28487163215">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,81.2982442492639"
-              Start="0,0"
-              End="0,73.7982442492639">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,73.7982442492639" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13973,6 +13967,84 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\AddressType\Address Type">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Business Entity Address">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Business Entity Address\OLE DB Destination"
+          TopLeft="780,434" />
+        <NodeLayout
+          Size="155,43"
+          Id="Package\Business Entity Address\OLE DB Source"
+          TopLeft="758.999977380038,268.999991983176" />
+        <EdgeLayout
+          Id="Package\Business Entity Address.Paths[OLE DB Source Output]"
+          TopLeft="836.499977380038,311.999991983176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.500022619962,122.000008016824"
+              Start="0,0"
+              End="54.500022619962,114.500008016824">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.000004008412" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.000004008412"
+                    Point2="0,61.000004008412"
+                    Point3="4,61.000004008412" />
+                  <mssgle:LineSegment
+                    End="50.500022619962,61.000004008412" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.500022619962,61.000004008412"
+                    Point2="54.500022619962,61.000004008412"
+                    Point3="54.500022619962,65.000004008412" />
+                  <mssgle:LineSegment
+                    End="54.500022619962,114.500008016824" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Business Entity Address\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Business Entity Address\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -15668,82 +15740,6 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Store\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Business Entity Address">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="222,42"
-          Id="Package\Business Entity Address\OLE DB Destination"
-          TopLeft="780,434" />
-        <NodeLayout
-          Size="155,43"
-          Id="Package\Business Entity Address\OLE DB Source"
-          TopLeft="758.999977380038,268.999991983176" />
-        <EdgeLayout
-          Id="Package\Business Entity Address.Paths[OLE DB Source Output]"
-          TopLeft="836.499977380038,311.999991983176">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="54.500022619962,122.000008016824"
-              Start="0,0"
-              End="54.500022619962,114.500008016824">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,57.000004008412" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,57.000004008412"
-                    Point2="0,61.000004008412"
-                    Point3="4,61.000004008412" />
-                  <mssgle:LineSegment
-                    End="50.500022619962,61.000004008412" />
-                  <mssgle:CubicBezierSegment
-                    Point1="50.500022619962,61.000004008412"
-                    Point2="54.500022619962,61.000004008412"
-                    Point3="54.500022619962,65.000004008412" />
-                  <mssgle:LineSegment
-                    End="54.500022619962,114.500008016824" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Business Entity Address\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Business Entity Address\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

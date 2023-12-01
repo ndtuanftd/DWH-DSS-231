@@ -164,6 +164,9 @@ CREATE TABLE FactSales (
     SalesTerritoryKey INT NOT NULL,
 
 	SalesOrderNumber NVARCHAR(25) NOT NULL,
+	TaxAmt MONEY,    -- thuế của sale order
+	Freight MONEY,    -- giá ship của order
+	UnitPrice MONEY, -- giá của 1 product
 
     [Changes to Order] NVARCHAR(30), -- Tính từ RevisionNumber TINYINT NOT NULL,
     
@@ -172,6 +175,8 @@ CREATE TABLE FactSales (
     [Sales Subtotal Amount] MONEY, -- Tính từ SalesOrderHeader.SubTotal: SUM(SalesOrderDetail.LineTotal)for the appropriate SalesOrderID.
 
 	[Sales TotalDue Amount] MONEY, -- Tính từ TotalDue. Cách tính TotalDue trước khi tính tổng: Subtotal + TaxAmt + Freight
+
+	[Sales OrderLine Amount] MONEY, -- Tính từ LineTotal =  UnitPrice * (1 - UnitPriceDiscount) * OrderQty.
 	
 	-- Primary key could be a composite of SalesOrderNumber and SalesOrderLineNumber if they form a unique combination
     PRIMARY KEY (SalesOrderID, ProductKey),
@@ -904,8 +909,9 @@ TRUNCATE TABLE FactSales;
 INSERT INTO dbo.FactSales(
 	SalesOrderID, ProductKey, OrderDateKey, DueDateKey, ShipDateKey,
 	IndividualCustomerKey, StoreCustomerKey,SalesTerritoryKey, SalesOrderNumber
-	, [Changes to Order]
+	, TaxAmt, Freight, UnitPrice , [Changes to Order]
 	, [Sales Product Quantity], [Sales Subtotal Amount], [Sales TotalDue Amount])
+	, [Sales OrderLine Amount]
 SELECT 
 	SOH.SalesOrderId
 	, SOD.ProductID
@@ -920,10 +926,14 @@ SELECT
 	Customer.StoreID  AS StoreID
 	,SOH.TerritoryID
 	, SOH.SalesOrderNumber
+	, TaxAmt
+	, Freight
+	,UnitPrice
 	, RevisionNumber
 	,OrderQty
 	,SubTotal
 	,TotalDue
+	, ProductLineTotal
 -- SELECT *
 FROM CO4031_Staging.Sales.SalesOrderHeader AS SOH
 INNER JOIN CO4031_Staging.Sales.SalesOrderDetail As SOD ON SOH.SalesOrderId = SOD.SalesOrderID
